@@ -104,7 +104,7 @@ describe("Emitter event removal", function () {
     });
     it("can remove and call off twice", function () {
         let i = 0;
-        let off = emitter.on("inc", function () {
+        const off = emitter.on("inc", function () {
             i++;
         });
         emitter.trigger("inc");
@@ -114,7 +114,7 @@ describe("Emitter event removal", function () {
     });
     it("it removes the relevant event (1)", function () {
         let i = 0;
-        let off = emitter.on("inc", function () {
+        const off = emitter.on("inc", function () {
             i++;
         });
         emitter.on("inc", function () {
@@ -127,7 +127,7 @@ describe("Emitter event removal", function () {
     });
     it("it removes the relevant event (2) even when calling off twice (2)", function () {
         let i = 0;
-        let off = emitter.on("inc", function () {
+        const off = emitter.on("inc", function () {
             i++;
         });
         emitter.on("inc", function () {
@@ -145,12 +145,31 @@ describe("Emitter event removal", function () {
         const handler = function () {
             i++;
         };
-        let off = emitter.on("inc", handler);
+        const off = emitter.on("inc", handler);
         emitter.on("inc", handler);
         emitter.trigger("inc");
         off();
         off();
         emitter.trigger("inc");
+        assert.equal(i, 3);
+    });
+
+    it("two offs test", function () {
+        let i = 0;        
+        const off1 = emitter.on("inc", function () {
+            i++;
+        });
+
+        const off2 = emitter.on("inc", function () {
+            i++;
+        });        
+        emitter.trigger("inc");
+        assert.equal(i, 2);
+        off1();
+        emitter.trigger("inc");        
+        assert.equal(i, 3);
+        off2();
+        emitter.trigger("inc");        
         assert.equal(i, 3);
     });
 });
