@@ -26,11 +26,22 @@ describe("The router", function () {
         router.addRoute("/Foo", function () { });
         router.route("/Home");
     });
+    /*
     it("conflicts on two conflicting routes", function () {
         router.addRoute("/Home", function () { });
         router.addRoute("/Home", function () { });
         assert.throws(function () {
             router.route("/Home");
+        });
+    });
+    */
+    //my test (approved by email)
+    it("conflicts on two conflicting routes", function () {
+        router.addRoute("/Home/Home", function () { });
+        router.addRoute("/Home/:param", function () { });
+        
+        assert.throws(function () {
+            router.addRoute("/Home/Home", function () { });
         });
     });
     it("Supports passing a parameter", function (done) {
@@ -64,6 +75,55 @@ describe("The router", function () {
         });
         router.route("/Home/Bar/Baz/Foo");
     });
+    it("accepts first as param", function (done) {
+        router.addRoute("/:onlyParam", function (params) {
+            assert.equal(params.url, "/home");
+            done();
+        });
+        router.route("/home");
+    });
+    it("accepts first as param 2", function (done) {
+        router.addRoute("/:onlyParam/Bar", function (params) {
+            assert.equal(params.url, "/someParam/Bar");
+            done();
+        });
+        router.route("/someParam/Bar");
+    });
+
+    it("accepts first as param 3", function () {
+        router.addRoute("/:onlyParam/Bar", function (params) {
+            assert.fail("routing shouldn't get here");
+        });
+        router.route("/someParam/NotBar");
+    });
+
+    it("accepts first as param 4", function (done) {
+        router.addRoute("/:onlyParam/Bar", function (params) {
+            assert.fail("routing shouldn't get here");
+        });
+        router.addRoute("/:onlyParam/baz", function (params) {
+            assert.equal(params.url, "/someParam/baz");
+            done();
+        });
+        router.route("/someParam/baz");
+    });
+    
+    it("accepts params anywhere", function (done) {
+        router.addRoute("/:firstParam/Bar/:otherParam/:baz", function (params) {
+            assert.equal(params.url, "/Home/Bar/Baz/Foo");
+            done();
+        });
+        router.route("/Home/Bar/Baz/Foo");
+    });
+
+    it("accepts params anywhere 2", function (done) {
+        router.addRoute("/Home/Bar/:otherParam/:baz", function (params) {
+            assert.equal(params.url, "/Home/Bar/Baz/Foo");
+            done();
+        });
+        router.route("/Home/Bar/Baz/Foo");
+    });
+    
     it("Stores the handler in the state", function (done) {
         var counter = 0;
         router.addRoute("/Home", function curState(info, params) {
@@ -76,6 +136,7 @@ describe("The router", function () {
         router.route("/Home");
         router.route("/Home");
     });
+    
     it("supports many calls", function (done) {
         var counter = 1;
         router.addRoute("/Home", function curState(info, params) {
@@ -88,6 +149,7 @@ describe("The router", function () {
             router.route("/Home");
         }
     });
+    
     it("supports routes calling each other", function (done) {
         var counter = 1;
         router.addRoute("/Bar", function curState(info, params) {
@@ -102,4 +164,5 @@ describe("The router", function () {
         });
         router.route("/Bar");
     });
+    
 });
