@@ -1,5 +1,3 @@
-It is often desirable in single page application to have a form of state management.
-
 In this exercise we'll example one such way using routing. You'll be implementing a router that allows clear state management in the application.
 
 **We encourage you to actually run the tests at the end of the file**
@@ -13,9 +11,9 @@ Implement a `Router` object with the following methods:
 Adds the given route to the router.
  
  - `routeName` is the name of the route given, for example `/Home`.
- - `handler` is a function to call when routing to the route is done with the below `route` method. For this initial task, the router should receieve one parameter. the paramater is an object with twi properties, url and state. The url property should match the url in the trigger method, and the state property should be the handler object itself.
+ - `handler` is a function to call when routing is done with the below `route` method. For this initial task, the router should receieve one parameter. The paramater is an object with two properties, url and state. The url property should match the url in the trigger method, and the state property should be the handler object itself.
  
- **Route handlers (i.e. routeName above) should always start with a /. If they do not, throw an exception**
+ **Route handlers (i.e. routeName above) should always start with a '/'. If they do not, throw an exception**
 
 ### route
 
@@ -31,7 +29,7 @@ Calling `route` after a call to `addRoute` with the same route should perform th
     });
     router.route("/Home"); // will log "HI" to the console
     
-Once you're done with the basic functionality (you may use your event emitter for this). We'll want to support route parameters.
+Once you're done with the basic functionality, we'll want to support route parameters.
 
 We'll now be allowing routes to have parameters with the following format:
 
@@ -43,7 +41,6 @@ We'll now be allowing routes to have parameters with the following format:
     
 In case two handlers match the same route, an Error should be thrown.
 
-For extra credit (not required) you may want to use the HTML5 history API to change the displayed URL in the address bar to the current route, support the back button and instant routing on navigation. Please do not start on those before you've finished the rest of the exercise.
 
 ### running tests
 Name your file `router.js` and export your class/constructor as `Router`. After you `npm i` you can execute `npm run test`.
