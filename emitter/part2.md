@@ -2,7 +2,7 @@ We will now improve our previous implementation of the event emitter, and add an
 
 We will change the on function. It should return a function that recieves no arguments, and returns nothing, that removes the listener that was added by on.
 
-###on
+### on
 
     .on(eventName, handler)
      
