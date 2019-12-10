@@ -6,7 +6,7 @@ In this exercise we'll example one such way using routing. You'll be implementin
 
 Implement a `Router` object with the following methods:
 
-###addRoute
+### addRoute
 
     router.addRoute(routeName, handler)
 
@@ -17,7 +17,7 @@ Adds the given route to the router.
  
  **Route handlers (i.e. routeName above) should always start with a /. If they do not, throw an exception**
 
-###route
+### route
 
     router.route(routeName);
 
