@@ -45,6 +45,9 @@ In case two handlers match the same route, an Error should be thrown.
 
 For extra credit (not required) you may want to use the HTML5 history API to change the displayed URL in the address bar to the current route, support the back button and instant routing on navigation. Please do not start on those before you've finished the rest of the exercise.
 
+### running tests
+Name your file `router.js` and export your class/constructor as `Router`. After you `npm i` you can execute `npm run test`.
+
 Here are some tests to get the point across (again, **We encourage you to actually run the tests**):
 
     describe("The router",function() {

@@ -26,6 +26,10 @@ For example:
     f.trigger("Hello", "World"); 
     
 For convenience, here are some unit tests for our `EventEmitter` in order to clarify its behavior.
+
+### running tests
+Name your file `emitter-part-1.js` and export your class/constructor as `EventEmitter`. After you `npm i` you can execute `npm run test`.
+
 **we __encourage__ to run the tests**
     
     describe("Emitter", function () {
