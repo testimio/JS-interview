@@ -15,28 +15,31 @@ Adds the given route to the router.
 
 ### route
 
-    router.route(routeName);
+```js
+router.route(routeName);
+```
 
  - `routeName` is the name of the route given, for example `/Home`.  You may throw an exception if routeName is not a string. Also, if routeName does not start with a '/', the router should behave as if it did start with a '/'.
 
 Calling `route` after a call to `addRoute` with the same route should perform the actions in the handler. For example:
 
-    var router = new Router;
-    router.addRoute("/Home", function (info) {
-        console.log("HI");
-    });
-    router.route("/Home"); // will log "HI" to the console
-    
+```js
+var router = new Router;
+router.addRoute("/Home", (info) => {
+  console.log("HI");
+});
+router.route("/Home"); // will log "HI" to the console
+```    
 
 Once you're done with the basic functionality, we'll want to support route parameters.
 
 We'll now be allowing routes to have parameters with the following format:
 
-    router.addRoute("/Home/:name", handler(info,params) {
+    router.addRoute("/Home/:name", (info,params) => {
         console.log(info.url);
         console.log(params.name); 
     });
-    router.route("/Home/Gilad"); // params.name is "Gilad" in the handler, info.url is /Home/Gilad.
+    router.route("/Home/Ronsho"); // params.name is "Ronsho" in the handler, info.url is /Home/Ronsho.
     
 In case two handlers match the same route, an Error should be thrown.
 
