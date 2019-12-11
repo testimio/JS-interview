@@ -31,87 +31,89 @@ For convenience, here are some unit tests for our `EventEmitter` in order to cla
 Name your file `emitter-part-1.js` and export your class/constructor as `EventEmitter`. After you `npm i` you can execute `npm run test`.
 
 **we __encourage__ to run the tests**
-    
-    describe("Emitter", function () {
-         let emitter;
-         beforeEach(function () {
-             emitter = new EventEmitter();
-         });
-         it("can trigger an event", function (done) {        
-             emitter.on("Hello", function () {
-                 done();
-             });
-             emitter.trigger("Hello");
-         });
-         it("can trigger an event with data", function (done) {
-             emitter.on("Hello", function (data) {
-                 assert.equal(data, "World");
-                 done();
-             });
-             emitter.trigger("Hello", "World");
 
-         });
-         it("only triggers events once", function (done) {
-             let triggered = false;
-             emitter.on("Hello", function () {
-                 if (triggered) throw new Error("Multiple triggers");
-                 triggered = true;
-                 setTimeout(done, 1);
-             });
-             emitter.trigger("Hello");
-         });
-
-         it("supports several event handlers", function (done) {
-             let counter = 0;
-             emitter.on("Hello", byOne);
-             emitter.on("Hello", byOne);
-             function byOne() {
-                 counter++;
-                 if (counter === 2) {
-                     done();
-                 }
-             }
-             emitter.trigger("Hello");
-         });
-
-         it("Supports multiple events", function (done) {
-             let counter = 0;
-             emitter.on("Hello", byOne);
-             emitter.on("World", byOne);
-             function byOne() {
-                 counter++;
-                 if (counter === 2) {
-                     done();
-                 }
-             }
-             emitter.trigger("Hello");
-             emitter.trigger("World");
-         });
-         it("Supports multiple events", function (done) {
-             let bar = new EventEmitter(), counter = 0;
-             emitter.on("Hello", byOne);
-             bar.on("World", byOne);
-             function byOne() {
-                 counter++;
-                 if (counter === 2) {
-                     done();
-                 }
-             }
-             emitter.trigger("Hello");
-             bar.trigger("World");
-         });
-         it("Does not leak events between emitters", function (done) {
-             let bar = new EventEmitter(), counter = 0;
-             emitter.on("Hello", byOne);
-             emitter.on("World", byOne);
-             function byOne() {
-                 counter++;
-                 if (counter === 2) {
-                     assert.fail();
-                 }
-             }
-             emitter.trigger("Hello");
-             bar.trigger("World");
-             setTimeout(done, 5);
-         });
+````js
+describe("Emitter", () => {
+  let emitter;
+  beforeEach(() => {
+    emitter = new EventEmitter();
+  });
+  it("can trigger an event", (done) => {        
+    emitter.on("Hello", () => {
+      done();
     });
+    emitter.trigger("Hello");
+  });
+  it("can trigger an event with data", (done) => {
+    emitter.on("Hello", (data) => {
+      assert.equal(data, "World");
+      done();
+    });
+    emitter.trigger("Hello", "World");
+    
+  });
+  it("only triggers events once", (done) => {
+    let triggered = false;
+    emitter.on("Hello", () => {
+      if (triggered) throw new Error("Multiple triggers");
+      triggered = true;
+      setTimeout(done, 1);
+    });
+    emitter.trigger("Hello");
+  });
+  
+  it("supports several event handlers", (done) => {
+    let counter = 0;
+    emitter.on("Hello", byOne);
+    emitter.on("Hello", byOne);
+    function byOne() {
+      counter++;
+      if (counter === 2) {
+        done();
+      }
+    }
+    emitter.trigger("Hello");
+  });
+  
+  it("Supports multiple events", (done) => {
+    let counter = 0;
+    emitter.on("Hello", byOne);
+    emitter.on("World", byOne);
+    function byOne() {
+      counter++;
+      if (counter === 2) {
+        done();
+      }
+    }
+    emitter.trigger("Hello");
+    emitter.trigger("World");
+  });
+  it("Supports multiple events", (done) => {
+    let bar = new EventEmitter(), counter = 0;
+    emitter.on("Hello", byOne);
+    bar.on("World", byOne);
+    function byOne() {
+      counter++;
+      if (counter === 2) {
+        done();
+      }
+    }
+    emitter.trigger("Hello");
+    bar.trigger("World");
+  });
+  it("Does not leak events between emitters", (done) => {
+    let bar = new EventEmitter(), counter = 0;
+    emitter.on("Hello", byOne);
+    emitter.on("World", byOne);
+    function byOne() {
+      counter++;
+      if (counter === 2) {
+        assert.fail();
+      }
+    }
+    emitter.trigger("Hello");
+    bar.trigger("World");
+    setTimeout(done, 5);
+  });
+});
+```
