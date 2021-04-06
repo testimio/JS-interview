@@ -95,12 +95,12 @@ describe("Emitter event removal", function () {
         let i = 0;
         let off = emitter.on("inc", function () {
             i++;
-            done();
+            setTimeout(done, 5);
         });
         emitter.trigger("inc");
         off();
         emitter.trigger("inc");
-        Assert.equal(i, 1);
+        assert.equal(i, 1);
     });
     it("can remove and call off twice", function () {
         let i = 0;
