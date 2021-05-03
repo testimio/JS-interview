@@ -1,6 +1,6 @@
 In this exercise we'll explore some design patterns in JavaScript.
 
-In our first exercise you will be implementing an Messenger object with two methods.
+In our first exercise you will be implementing an EventEmitter object with two methods.
 
 ### on
 
@@ -18,17 +18,17 @@ In our first exercise you will be implementing an Messenger object with two meth
 
 For example:
 
-    var f = new Messenger();
+    var f = new EventEmitter();
     f.on("Hello", function(data){
       alert(data);
     });
     // the handler will be called and an `alert` prompt will be shown with `world`
     f.trigger("Hello", "World"); 
     
-For convenience, here are some unit tests for our `Messenger` in order to clarify its behavior.
+For convenience, here are some unit tests for our `EventEmitter` in order to clarify its behavior.
 
 ### running tests
-Name your file `emitter-part-1.js` and export your class/constructor as `Messenger`. After you `npm i` you can execute `npm run test`.
+Name your file `emitter-part-1.js` and export your class/constructor as `EventEmitter`. After you `npm i` you can execute `npm run test`.
 
 **we __encourage__ to run the tests**
 
@@ -36,7 +36,7 @@ Name your file `emitter-part-1.js` and export your class/constructor as `Messeng
 describe("Emitter", () => {
   let emitter;
   beforeEach(() => {
-    emitter = new Messenger();
+    emitter = new EventEmitter();
   });
   it("can trigger an event", (done) => {        
     emitter.on("Hello", () => {
