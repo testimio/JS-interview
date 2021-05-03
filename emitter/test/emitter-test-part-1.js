@@ -33,8 +33,15 @@ describe("Emitter", function () {
     it("supports several event handlers", function (done) {
         let counter = 0;
         emitter.on("Hello", byOne);
-        emitter.on("Hello", byOne);
+        emitter.on("Hello", byOneTwo);
         function byOne() {
+            counter++;
+            if (counter === 2) {
+                done();
+            }
+        }
+        
+        function byOneTwo() {
             counter++;
             if (counter === 2) {
                 done();
@@ -42,8 +49,22 @@ describe("Emitter", function () {
         }
         emitter.trigger("Hello");
     });
+    
+    it("supports same function multiple times", function (done) {
+        let counter = 0;
+        emitter.on("Hello", byOne);
+        emitter.on("Hello", byOne);
+        function byOne() {
+            counter++;
+            if (counter === 2) {
+                done();
+            }
+        }
+        
+        emitter.trigger("Hello");
+    });
 
-    it("Supports multiple events", function (done) {
+    it("Supports multiple event triggers same function", function (done) {
         let counter = 0;
         emitter.on("Hello", byOne);
         emitter.on("World", byOne);
@@ -56,8 +77,31 @@ describe("Emitter", function () {
         emitter.trigger("Hello");
         emitter.trigger("World");
     });
+
+    it("Supports multiple event triggers different function", function (done) {
+        let counter = 0;
+        emitter.on("Hello", byOne);
+        emitter.on("World", byOneTwo);
+        function byOne() {
+            counter++;
+            if (counter === 2) {
+                done();
+            }
+        }
+
+        function byOneTwo() {
+            counter++;
+            if (counter === 2) {
+                done();
+            }
+        }
+        emitter.trigger("Hello");
+        emitter.trigger("World");
+    });
+
     it("Supports multiple events", function (done) {
-        let bar = new EventEmitter(), counter = 0;
+        const bar = new EventEmitter();
+        let counter = 0;
         emitter.on("Hello", byOne);
         bar.on("World", byOne);
         function byOne() {
@@ -70,7 +114,8 @@ describe("Emitter", function () {
         bar.trigger("World");
     });
     it("Does not leak events between emitters", function (done) {
-        let bar = new EventEmitter(), counter = 0;
+        const bar = new EventEmitter();
+        let counter = 0;
         emitter.on("Hello", byOne);
         emitter.on("World", byOne);
         function byOne() {
