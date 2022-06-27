@@ -3,7 +3,7 @@ const assert = require('assert');
 const EventEmitter = require('../emitter.js');
 
 
-describe("Emitter", function () {
+describe("Emitter", () => {
     let emitter;
     let tracker;
     beforeEach(() => {
@@ -11,21 +11,24 @@ describe("Emitter", function () {
         tracker = new assert.CallTracker();
     });
 
-    it("can trigger an event", function (done) {   
+    it("can trigger an event", (done) => {   
         emitter.on("Hello", () => done());
         emitter.trigger("Hello");
     });
-    it("can trigger an event with data", function () {
+
+    it("can trigger an event with data", () => {
         emitter.on("Hello", (data) => {
             assert.equal(data, "World");
         });
         emitter.trigger("Hello", "World");
 
     });
-    it("Can trigger a event with no handlers", function () {
+
+    it("can trigger a event with no handlers", () => {
         emitter.trigger("Hello");
     });
-    it("only triggers events once", function () {
+
+    it("only triggers events once", () => {
         const trackedFunction = tracker.calls(1);
 
         emitter.on("Hello", trackedFunction);
@@ -34,7 +37,7 @@ describe("Emitter", function () {
         tracker.verify();
     });
 
-    it("supports several event handlers", function () {
+    it("supports several event handlers", () => {
         const trackedFunction = tracker.calls(1);
         const trackedFunction1 = tracker.calls(1);
 
@@ -45,7 +48,7 @@ describe("Emitter", function () {
         tracker.verify();
     });
     
-    it("supports same function multiple times", function () {
+    it("supports same function multiple times", () => {
         const trackedFunction = tracker.calls(2);
 
         emitter.on("Hello", trackedFunction);
@@ -55,7 +58,7 @@ describe("Emitter", function () {
         tracker.verify();
     });
 
-    it("Supports multiple event triggers same function", function () {
+    it("supports multiple event triggers same function", () => {
         const trackedFunction = tracker.calls(2);
 
         emitter.on("Hello", trackedFunction);
@@ -66,7 +69,7 @@ describe("Emitter", function () {
         tracker.verify();
     });
 
-    it("Supports multiple event triggers different function", function () {
+    it("supports multiple event triggers different function", () => {
         const trackedFunction = tracker.calls(1);
         const trackedFunction1 = tracker.calls(1);
 
@@ -78,7 +81,7 @@ describe("Emitter", function () {
         tracker.verify();
     });
 
-    it("Supports multiple events", function () {
+    it("supports multiple events", () => {
         const bar = new EventEmitter();
         const trackedFunction = tracker.calls(2);
 
@@ -91,7 +94,8 @@ describe("Emitter", function () {
 
         tracker.verify();
     });
-    it("Does not leak events between emitters", function () {
+
+    it("does not leak events between emitters", () => {
         const bar = new EventEmitter();
         const trackedFunction = tracker.calls(1);
 
@@ -104,14 +108,15 @@ describe("Emitter", function () {
     });
 });
 
-describe("Emitter event removal", function () {
+describe("Emitter event removal", () => {
     let emitter;
     let tracker;
     beforeEach(() => {
         emitter = new EventEmitter();
         tracker = new assert.CallTracker();
     });
-    it("can remove an event", function () {
+
+    it("can remove an event", () => {
         const trackedFunction = tracker.calls(1);
 
         const off = emitter.on("inc", trackedFunction);
@@ -121,7 +126,8 @@ describe("Emitter event removal", function () {
 
         tracker.verify();
     });
-    it("can remove and call off twice", function () {
+
+    it("can remove and call off twice", () => {
         const trackedFunction = tracker.calls(1);
 
         const off = emitter.on("inc", trackedFunction);
@@ -131,7 +137,8 @@ describe("Emitter event removal", function () {
 
         tracker.verify();
     });
-    it("it removes the relevant event", function () {
+
+    it("removes the relevant event", () => {
         const trackedFunction = tracker.calls(1);
         const trackedFunction1 = tracker.calls(2);
 
@@ -143,7 +150,8 @@ describe("Emitter event removal", function () {
         
         tracker.verify();
     });
-    it("it removes the relevant event even when calling off twice", function () {
+
+    it("removes the relevant event even when calling off twice", () => {
         const trackedFunction = tracker.calls(1);
         const trackedFunction1 = tracker.calls(2);
 
@@ -157,7 +165,7 @@ describe("Emitter event removal", function () {
         tracker.verify();
     });
 
-    it("it removes the relevant event even when calling off twice, and the same handler function was given", function () {
+    it("removes the relevant event even when calling off twice, and the same handler function was given", () => {
         const trackedFunction = tracker.calls(3);
 
         const off = emitter.on("inc", trackedFunction);
@@ -170,7 +178,7 @@ describe("Emitter event removal", function () {
         tracker.verify();
     });
 
-    it("two offs test", function () {
+    it("two offs test", () => {
         const trackedFunction = tracker.calls(1);
         const trackedFunction1 = tracker.calls(2);
 

@@ -2,7 +2,7 @@ require('./polyfills.js');
 const assert = require('assert');
 const EventEmitter = require('../emitter.js');
 
-describe("Emitter", function () {
+describe("Emitter", () => {
     let emitter;
     let tracker;
     beforeEach(() => {
@@ -10,21 +10,24 @@ describe("Emitter", function () {
         tracker = new assert.CallTracker();
     });
 
-    it("can trigger an event", function (done) {   
+    it("can trigger an event", (done) => {   
         emitter.on("Hello", () => done());
         emitter.trigger("Hello");
     });
-    it("can trigger an event with data", function () {
+
+    it("can trigger an event with data", () => {
         emitter.on("Hello", (data) => {
             assert.equal(data, "World");
         });
         emitter.trigger("Hello", "World");
 
     });
-    it("Can trigger a event with no handlers", function () {
+
+    it("can trigger a event with no handlers", () => {
         emitter.trigger("Hello");
     });
-    it("only triggers events once", function () {
+
+    it("only triggers events once", () => {
         const trackedFunction = tracker.calls(1);
 
         emitter.on("Hello", trackedFunction);
@@ -33,7 +36,7 @@ describe("Emitter", function () {
         tracker.verify();
     });
 
-    it("supports several event handlers", function () {
+    it("supports several event handlers", () => {
         const trackedFunction = tracker.calls(1);
         const trackedFunction1 = tracker.calls(1);
 
@@ -44,7 +47,7 @@ describe("Emitter", function () {
         tracker.verify();
     });
     
-    it("supports same function multiple times", function () {
+    it("supports same function multiple times", () => {
         const trackedFunction = tracker.calls(2);
 
         emitter.on("Hello", trackedFunction);
@@ -54,7 +57,7 @@ describe("Emitter", function () {
         tracker.verify();
     });
 
-    it("Supports multiple event triggers same function", function () {
+    it("supports multiple event triggers same function", () => {
         const trackedFunction = tracker.calls(2);
 
         emitter.on("Hello", trackedFunction);
@@ -65,7 +68,7 @@ describe("Emitter", function () {
         tracker.verify();
     });
 
-    it("Supports multiple event triggers different function", function () {
+    it("supports multiple event triggers different function", () => {
         const trackedFunction = tracker.calls(1);
         const trackedFunction1 = tracker.calls(1);
 
@@ -77,7 +80,7 @@ describe("Emitter", function () {
         tracker.verify();
     });
 
-    it("Supports multiple events", function () {
+    it("supports multiple events", () => {
         const bar = new EventEmitter();
         const trackedFunction = tracker.calls(2);
 
@@ -90,7 +93,8 @@ describe("Emitter", function () {
 
         tracker.verify();
     });
-    it("Does not leak events between emitters", function () {
+
+    it("does not leak events between emitters", () => {
         const bar = new EventEmitter();
         const trackedFunction = tracker.calls(1);
 
