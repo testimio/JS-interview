@@ -1,3 +1,4 @@
+require('./polyfills.js');
 const assert = require('assert');
 const EventEmitter = require('../emitter.js');
 
