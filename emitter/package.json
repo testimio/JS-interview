@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/emitter-test-part-1.js || exit 0",
-    "test2": "mocha test/emitter-test-part-2.js || exit 0",
-    "tests": "mocha test/emitter-test-part-1.js || exit 0",
-    "tests2": "mocha test/emitter-test-part-2.js || exit 0"
+    "test": "mocha test/part1.test.js || exit 0",
+    "test2": "mocha test/part2.test.js || exit 0",
+    "tests": "mocha test/part1.test.js || exit 0",
+    "tests2": "mocha test/part2.test.js || exit 0"
   },
   "keywords": [],
   "author": "",

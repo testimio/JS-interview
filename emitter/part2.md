@@ -12,6 +12,6 @@ We will change the on function. It should return a function that recieves no arg
     Calling it twice should have the same effect as calling it once.
 
 ### running tests
-Name your file `emitter-part-2.js` and export your class/constructor as `EventEmitter`. After you `npm i` you can execute `npm run test2`.
+Name your file `emitter.js` and export your class/constructor as `EventEmitter`. After you `npm i` you can execute `npm run test2`.
 
 **We __encourage__ you to run the tests**.

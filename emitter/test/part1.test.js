@@ -1,5 +1,5 @@
 const assert = require('assert');
-const EventEmitter = require('../emitter-part-1.js');
+const EventEmitter = require('../emitter.js');
 
 describe("Emitter", function () {
     let emitter;
