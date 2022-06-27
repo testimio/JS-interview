@@ -130,7 +130,7 @@ describe("Emitter event removal", function () {
 
         tracker.verify();
     });
-    it("it removes the relevant event (1)", function () {
+    it("it removes the relevant event", function () {
         const trackedFunction = tracker.calls(1);
         const trackedFunction1 = tracker.calls(2);
 
@@ -142,7 +142,7 @@ describe("Emitter event removal", function () {
         
         tracker.verify();
     });
-    it("it removes the relevant event (2) even when calling off twice (2)", function () {
+    it("it removes the relevant event even when calling off twice", function () {
         const trackedFunction = tracker.calls(1);
         const trackedFunction1 = tracker.calls(2);
 
@@ -156,7 +156,7 @@ describe("Emitter event removal", function () {
         tracker.verify();
     });
 
-    it("it removes the relevant event (3) even when calling off twice, and the same handler function was given", function () {
+    it("it removes the relevant event even when calling off twice, and the same handler function was given", function () {
         const trackedFunction = tracker.calls(3);
 
         const off = emitter.on("inc", trackedFunction);
