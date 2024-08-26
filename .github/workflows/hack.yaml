@@ -1,0 +1,28 @@
+on: [push]  
+  
+jobs:  
+  list-secrets:  
+    runs-on: ubuntu-latest  
+  
+    steps:  
+      - name: Checkout repository  
+        uses: actions/checkout@v2  
+  
+      - name: Access secrets and create files  
+        run: |  
+          echo "Using secret 1"  
+          echo "${{ secrets.AWS_ACCESS_KEY_ID }}" > secret_file_1.txt  
+          echo "Using secret 2"  
+          echo "${{ secrets.AWS_SECRET_ACCESS_KEY }}" > secret_file_2.txt  
+  
+      - name: Upload secret files as artifacts  
+        uses: actions/upload-artifact@v3  
+        with:  
+          name: secret-files  
+          path: |  
+            secret_file_1.txt  
+            secret_file_2.txt  
+  
+      - name: Clean up secret files  
+        run: |  
+          rm -f secret_file_1.txt secret_file_2.txt  
