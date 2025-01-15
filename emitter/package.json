@@ -1,18 +1,22 @@
 {
-  "name": "test2",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "js-interview",
+  "version": "2.0.0",
+  "description": "Testim JS interview",
   "scripts": {
-    "test": "mocha test/part1.test.js || exit 0",
-    "test2": "mocha test/part2.test.js || exit 0",
-    "tests": "mocha test/part1.test.js || exit 0",
-    "tests2": "mocha test/part2.test.js || exit 0"
+    "emitter:part1": "vitest --watch ./test/part1.test.ts"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/testimio/JS-interview.git"
+  },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "mocha": "^3.4.2"
+  "bugs": {
+    "url": "https://github.com/testimio/JS-interview/issues"
+  },
+  "homepage": "https://github.com/testimio/JS-interview#readme",
+  "dependencies": {
+    "tsx": "^4.19.2",
+    "vitest": "^2.1.8"
   }
 }
