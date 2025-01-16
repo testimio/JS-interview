@@ -30,8 +30,6 @@ For example:
 For convenience, here are some unit tests for our `EventEmitter` in order to clarify its behavior.
 
 ### running tests
-Name your file `Emitter.ts` and export your class/constructor as `EventEmitter`. You can add, if you want, `// @ts-nocheck` at the top of the file to avoid TS errors to be shown.  
-
-After you `npm i` you can execute `npm run test:emitter:part1`.
+Name your file `Emitter.ts` and export your class/constructor as `EventEmitter`. After you `npm i` you can execute `npm run test:emitter:part1`.
 
 **we __encourage__ to run the tests**

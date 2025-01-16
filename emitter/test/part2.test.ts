@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, it, beforeEach, expect, vi } from 'vitest';
 import EventEmitter from '../Emitter';
 
