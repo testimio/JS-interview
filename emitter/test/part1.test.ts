@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { describe, it, beforeEach, expect, vi } from 'vitest';
-import EventEmitter from './Emitter';
+import EventEmitter from '../Emitter';
 
 describe("Emitter", () => {
     let emitter;

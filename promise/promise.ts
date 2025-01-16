@@ -1,4 +1,4 @@
-const delay = () => {
+const delay = (dealay) => {
     // Implement me.
 }
 
@@ -12,6 +12,6 @@ const delay = () => {
     const diff = end.getSeconds() - start.getUTCSeconds();
 
     if (diff <= 2.9) {
-        console.log('Not enough time passed 😭')
+        console.log('Not enough time has passed 😭');
     }
 })();

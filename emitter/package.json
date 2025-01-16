@@ -3,7 +3,8 @@
   "version": "2.0.0",
   "description": "Testim JS interview",
   "scripts": {
-    "emitter:part1": "vitest --watch ./test/part1.test.ts"
+    "test:emitter:part1": "vitest --watch ./test/part1.test.ts",
+    "test:emitter:part2": "vitest --watch ./test/part2.test.ts"
   },
   "repository": {
     "type": "git",

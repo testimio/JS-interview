@@ -17,17 +17,21 @@ In our first exercise you will be implementing an EventEmitter object with two m
  - `data` the data to pass to receivers of the event.
 
 For example:
-
-    var f = new EventEmitter();
-    f.on("Hello", function(data){
+```js
+    var eventEitter = new EventEmitter();
+    eventEitter.on("Hello", function(data) {
       alert(data);
     });
-    // the handler will be called and an `alert` prompt will be shown with `world`
-    f.trigger("Hello", "World"); 
-    
+
+    // The handler will be called and an `alert` prompt will be shown with `world`.
+    eventEitter.trigger("Hello", "World");
+```
+
 For convenience, here are some unit tests for our `EventEmitter` in order to clarify its behavior.
 
 ### running tests
-Name your file `emitter.js` and export your class/constructor as `EventEmitter`. After you `npm i` you can execute `npm run test`.
+Name your file `Emitter.ts` and export your class/constructor as `EventEmitter`. You can add, if you want, `// @ts-nocheck` at the top of the file to avoid TS errors to be shown.  
+
+After you `npm i` you can execute `npm run test:emitter:part1`.
 
 **we __encourage__ to run the tests**
