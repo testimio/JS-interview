@@ -14,6 +14,7 @@ describe("Emitter", () => {
         const done = vi.fn();
         emitter.on("Hello", done);
         emitter.trigger("Hello");
+
         expect(done).toHaveBeenCalled();
     });
 
@@ -24,6 +25,7 @@ describe("Emitter", () => {
 
         emitter.on("Hello", handler);
         emitter.trigger("Hello", "World");
+
         expect(handler).toHaveBeenCalled();
     });
 
@@ -33,6 +35,7 @@ describe("Emitter", () => {
 
     it("only triggers events once", () => {
         const trackedFunction = vi.fn();
+
         emitter.on("Hello", trackedFunction);
         emitter.trigger("Hello");
 
@@ -40,15 +43,16 @@ describe("Emitter", () => {
     });
 
     it("supports several event handlers", () => {
-        const trackedFunction = vi.fn();
-        const trackedFunction1 = vi.fn();
+        const trackedFunctionOne = vi.fn();
+        const trackedFunctionTwo = vi.fn();
 
-        emitter.on("Hello", trackedFunction);
-        emitter.on("Hello", trackedFunction1);
+        emitter.on("Hello", trackedFunctionOne);
+        emitter.on("Hello", trackedFunctionTwo);
+
         emitter.trigger("Hello");
 
-        expect(trackedFunction).toHaveBeenCalledTimes(1);
-        expect(trackedFunction1).toHaveBeenCalledTimes(1);
+        expect(trackedFunctionOne).toHaveBeenCalledTimes(1);
+        expect(trackedFunctionTwo).toHaveBeenCalledTimes(1);
     });
 
     it("supports same function multiple times", () => {
@@ -56,6 +60,7 @@ describe("Emitter", () => {
 
         emitter.on("Hello", trackedFunction);
         emitter.on("Hello", trackedFunction);
+
         emitter.trigger("Hello");
 
         expect(trackedFunction).toHaveBeenCalledTimes(2);
@@ -63,13 +68,16 @@ describe("Emitter", () => {
 
     it("supports multiple event triggers same function", () => {
         const trackedFunction = vi.fn();
+        const trackedFunctionNotToBeInvoked = vi.fn();
 
         emitter.on("Hello", trackedFunction);
         emitter.on("World", trackedFunction);
+
         emitter.trigger("Hello");
         emitter.trigger("World");
 
         expect(trackedFunction).toHaveBeenCalledTimes(2);
+        expect(trackedFunctionNotToBeInvoked).toHaveBeenCalledTimes(0);
     });
 
     it("supports multiple event triggers different function", () => {
@@ -78,6 +86,7 @@ describe("Emitter", () => {
 
         emitter.on("Hello", trackedFunction);
         emitter.on("World", trackedFunction1);
+
         emitter.trigger("Hello");
         emitter.trigger("World");
 
@@ -86,27 +95,27 @@ describe("Emitter", () => {
     });
 
     it("supports multiple events", () => {
-        const bar = new EventEmitter();
+        const otherEventEmitter = new EventEmitter();
         const trackedFunction = vi.fn();
 
         emitter.on("Hello", trackedFunction);
-        bar.on("World", trackedFunction);
+        otherEventEmitter.on("World", trackedFunction);
 
         emitter.trigger("Hello");
-        bar.trigger("World");
+        otherEventEmitter.trigger("World");
 
         expect(trackedFunction).toHaveBeenCalledTimes(2);
     });
 
     it("does not leak events between emitters", () => {
-        const bar = new EventEmitter();
+        const otherEventEmitter = new EventEmitter();
         const trackedFunction = vi.fn();
 
         emitter.on("Hello", trackedFunction);
         emitter.on("World", trackedFunction);
         emitter.trigger("Hello");
 
-        bar.trigger("World");
+        otherEventEmitter.trigger("World");
         expect(trackedFunction).toHaveBeenCalledTimes(1);
     });
 });
