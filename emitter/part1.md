@@ -18,13 +18,13 @@ In our first exercise you will be implementing an EventEmitter object with two m
 
 For example:
 ```js
-    var eventEitter = new EventEmitter();
-    eventEitter.on("Hello", function(data) {
+    var eventEmitter = new EventEmitter();
+    eventEmitter.on("Hello", function(data) {
       alert(data);
     });
 
     // The handler will be called and an `alert` prompt will be shown with `world`.
-    eventEitter.trigger("Hello", "World");
+    eventEmitter.trigger("Hello", "World");
 ```
 
 For convenience, here are some unit tests for our `EventEmitter` in order to clarify its behavior.

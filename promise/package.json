@@ -2,7 +2,7 @@
   "name": "js-interview-promise",
   "version": "1.0.0",
   "scripts": {
-    "promise": "tsx --watch promise.ts"
+    "promise": "tsx --watch promiseTimeout.ts"
   },
   "author": "",
   "license": "ISC",
