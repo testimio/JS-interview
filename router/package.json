@@ -1,0 +1,21 @@
+{
+  "name": "js-interview-roter",
+  "version": "2.0.0",
+  "description": "Testim JS interview",
+  "scripts": {
+    "test": "vitest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/testimio/JS-interview.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/testimio/JS-interview/issues"
+  },
+  "homepage": "https://github.com/testimio/JS-interview#readme",
+  "dependencies": {
+    "vitest": "^2.1.8"
+  }
+}
