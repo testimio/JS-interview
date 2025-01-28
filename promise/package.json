@@ -1,0 +1,13 @@
+{
+  "name": "js-interview-promise",
+  "version": "1.0.0",
+  "scripts": {
+    "promise": "tsx --watch promiseTimeout.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "tsx": "^4.19.2"
+  }
+}

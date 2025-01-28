@@ -1,15 +1,21 @@
 {
-  "name": "test2",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "js-interview-roter",
+  "version": "2.0.0",
+  "description": "Testim JS interview",
   "scripts": {
-    "test": "mocha || exit 0"
+    "test": "vitest --watch"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/testimio/JS-interview.git"
+  },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "mocha": "^3.4.2"
+  "bugs": {
+    "url": "https://github.com/testimio/JS-interview/issues"
+  },
+  "homepage": "https://github.com/testimio/JS-interview#readme",
+  "dependencies": {
+    "vitest": "^2.1.8"
   }
 }
