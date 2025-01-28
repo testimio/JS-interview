@@ -14,6 +14,6 @@ Calling it twice should have the same effect as calling it once.
 
 ### running tests
 
-Name your file `Emitter.ts` and export your class/constructor as `EventEmitter`. After you `npm i` you can execute `npm run test:emitter:part1`.
+Name your file `Emitter.ts` and export your class/constructor as `EventEmitter`. After you `npm i` you can execute `npm run test:emitter:part2`.
 
 **We __encourage__ you to run the tests**.
