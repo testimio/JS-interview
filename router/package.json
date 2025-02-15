@@ -16,6 +16,6 @@
   },
   "homepage": "https://github.com/testimio/JS-interview#readme",
   "dependencies": {
-    "vitest": "^2.1.8"
+    "vitest": "^3.0.5"
   }
 }
